@@ -78,16 +78,15 @@ class HashTable:
 
         Fill this in.
         '''
-        if self.storage[self._hash_mod(key)] is not None:
-            current_node = self.storage[self._hash_mod(key)]
+        current_node = self.storage[self._hash_mod(key)]
+        if current_node is not None:
             if current_node.key == key:
                 return current_node.value
             while current_node.next is not None:
+                current_node = current_node.next
                 if current_node.key == key:
                     return current_node.value
-                elif current_node.next is not None:
-                    current_node = current_node.next
-                    continue
+
 
 
     def resize(self):
