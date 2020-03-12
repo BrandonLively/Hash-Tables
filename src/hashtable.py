@@ -105,11 +105,10 @@ class HashTable:
         '''
         Doubles the capacity of the hash table and
         rehash all key/value pairs.
-
         Fill this in
         '''
+        self.storage.extend(range(len(self.storage)))
 
-        pass
 
 
 if __name__ == "__main__":
