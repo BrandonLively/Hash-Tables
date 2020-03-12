@@ -99,16 +99,25 @@ class HashTable:
                 if current_node.key == key:
                     return current_node.value
 
-
-
     def resize(self):
         '''
         Doubles the capacity of the hash table and
         rehash all key/value pairs.
         Fill this in
         '''
-        self.storage.extend(range(len(self.storage)))
+        temp = copy = self.storage
+        self.storage = [None] * len(range(len(temp))) * 2
+        self.capacity = len(self.storage)
 
+        counter = 0
+        while counter < len(temp):
+            current_node = temp[counter]
+            if current_node is not None:
+                self.insert(current_node.key, current_node.value)
+                while current_node.next is not None:
+                    self.insert(current_node.next.key, current_node.next.value)
+                    current_node = current_node.next
+            counter += 1
 
 
 if __name__ == "__main__":
