@@ -74,19 +74,13 @@ class HashTable:
         current_node = self.storage[self._hash_mod(key)]
         if current_node is not None:
             if current_node.key == key:
-                if current_node.next is not None:
-                    current_node = None
-                else:
-                    current_node = current_node.next
+                self.storage[self._hash_mod(key)] = current_node.next
+                return
             while current_node.next is not None:
                 current_node = current_node.next
                 if current_node.key == key:
-                    if current_node.next is not None:
-                        current_node = None
-                    else:
-                        current_node = current_node.next
-                    break
-
+                    self.storage[self._hash_mod(key)] = current_node.next
+                    return
 
     def retrieve(self, key):
         '''
@@ -112,8 +106,9 @@ class HashTable:
         Doubles the capacity of the hash table and
         rehash all key/value pairs.
 
-        Fill this in.
+        Fill this in
         '''
+
         pass
 
 
